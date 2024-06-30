@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>vanila js taggle</title>
+	<link rel="stylesheet" href="">
+
+	<style>
+		body {
+			padding: 8vh 20px;
+		}
+		.v_tgle_wrap {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		.v_tgle_row {
+			border: 1px solid #000;
+			border-radius: 8px;
+			margin-bottom: 10px;
+			display: flex;
+			flex-direction:  column;
+		}
+		.heading {
+			cursor: pointer;
+			height: 100%;
+		}
+		.heading h1 {
+			padding: 20px;
+			margin: 0;
+		}
+		.tgl_info {
+			/* display: none; */
+			/* height: 0;
+			opacity: 0;
+			visibility: hidden; */
+			transition: height 1s;
+		}
+		.tgl_info p {
+			padding: 10px 20px;
+			margin: 0;
+		}
+		.active  .tgl_info {
+			opacity: 1;
+			visibility: visible;
+			transition: height 1s;
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="v_tgle_wrap">
+		<div class="v_tgle_row">
+			<div class="heading">
+				<h1>heading tag 1</h1>
+			</div>
+
+			<div class="tgl_info">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit officiis voluptatum error, nemo eveniet a, perferendis sunt, beatae, saepe Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit officiis voluptatum error, nemo eveniet a, perferendis sunt, beatae, saepe laudantium reprehenderit perspiciatis iure obcaecati necessitatibus amet architecto. Corporis, atque, molestias. necessitatibus amet architecto. Corporis, atque, molestias. necessitatibus amet architecto. Corporis, atque, molestias.</p>
+			</div>
+		</div>
+
+		<div class="v_tgle_row">
+			<div class="heading">
+				<h1>heading tag 2</h1>
+			</div>
+			
+			<div class="tgl_info">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit officiis voluptatum error, nemo eveniet a, perferendis sunt, beatae, saepe laudantium reprehenderit perspiciatis iure obcaecati necessitatibus amet architecto. Corporis, atque, molestias.</p>
+			</div>
+		</div>
+
+		<div class="v_tgle_row">
+			<div class="heading">
+				<h1>heading Lorem ipsum dolor sit, amet consectetur adipisicing elit adipisicing elit tag 3</h1>
+			</div>
+			
+			<div class="tgl_info">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit officiis voluptatum error, nemo eveniet a, perferendis sunt, beatae, saepe laudantium reprehenderit perspiciatis iure obcaecati necessitatibus amet architecto. Corporis, atque, molestias. perspiciatis iure obcaecati necessitatibus amet architecto. Corporis, atque, molestias.</p>
+			</div>
+		</div>
+	</div>
+
+	<script>
+			/*let headingTag = document.querySelectorAll('.v_tgle_row');
+			headingTag.forEach(function(item, index){
+				let tglTitle = item.children[0];
+				let tglContent = item.children[1];
+				// console.log('tglTitle: ', tglTitle, "\n", "tglContent:", tglContent );
+
+				tglTitle.addEventListener('click', function(currentItem, CurrentIndex){
+					if (!currentItem.currentTarget.classList.contains('active')){
+						currentItem.currentTarget.classList.add("active");
+					}else {
+						currentItem.currentTarget.classList.remove("active");
+					}
+				});
+				// console.log(`this is the currentItem: ${currentItem.currentTarget.className}`);
+			});*/
+	</script>
+
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			let headingTag = document.querySelectorAll('.v_tgle_row');
+			
+			headingTag.forEach(function(item, index){
+
+				let eachItemHeight = item.clientHeight;
+				// item.style.cssText = `height: ${eachItemHeight}px; overflow: hidden;`;
+
+
+				// let eachChlHeight = item.children[1].clientHeight;
+				let eachChlHeight = item.children[1].style.cssText = "display: none";
+
+				
+				// slideUp ();
+				// var slide_Up = [];
+				// function slideUp(slideup) {
+				// 	slide_Up.style.transition = "all 0.8s ease-in-out";
+				// 	slide_Up.style.height = "0px";
+				// }
+				// slideDown ();
+				var slide_Down = [];
+				// function slideDown(slidedown) {
+				// 	slide_Down.style.transition = "all 0.8s ease-in-out";
+				// 	slide_Down.style.height = "100px";
+				// }
+				slide_Down.push(eachChlHeight);
+				console.log(eachChlHeight, slide_Down);
+
+				item.addEventListener('click', function(e){
+					// it's check active class
+					let isActive = item.classList.contains('active');
+
+					headingTag.forEach(function(currentItem, currentIndex){
+						currentItem.classList.remove("active");
+						let tglIfo = currentItem.children[1].style.cssText = `display: none `;
+					});
+	
+					if (!isActive){
+						item.classList.add("active");
+						let tglIfo = item.children[1].style.cssText = `display: block; `;
+					}else {
+						item.classList.remove("active");
+						let tglIfo = item.children[1].style.cssText = `display:none; `;
+					}
+				});
+			});
+		});
+
+		/*const arr = [1, 2, 3, 4, 5];
+		console.log(arr.with(2, 6).map((x) => x * 2));*/
+	</script>
+</body>
+</html>
